@@ -12,6 +12,11 @@ RSpec.describe Caesar do
 		caesar = Caesar.new("Hello Dolly!", 2)
 		expect(caesar.solve_cipher).to_not eql("Jgnnq Fqnna!")
 		end
+
+		it "returns a string of shifted characters by - 2 number" do
+		caesar = Caesar.new("Jgnnq Fqnna!", - 2)
+		expect(caesar.solve_cipher).to_not eql("Hello Dolly!")
+		end
 	end
 
 	describe "#shift" do
@@ -23,6 +28,12 @@ RSpec.describe Caesar do
 		it "shift the character by 2 " do
 			caesar = Caesar.new("Hello Dolly!", 2)
 			expect(caesar.shift("H")).to eql("J")
+
+		end
+
+		it "unshift the character by -2 " do
+			caesar = Caesar.new("Hello Dolly!", -2)
+			expect(caesar.shift("J")).to eql("H")
 
 		end
 	end
