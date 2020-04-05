@@ -3,6 +3,9 @@
 
 
 def bubble_sort(array)
+	if array.class != Array
+		return "The method accepts only arrays"
+	end
 	length = (array.size) - 1
 	isSorted = false
 	while !isSorted #--> keep doing that while the array is not sorted
@@ -20,6 +23,7 @@ def bubble_sort(array)
 	 
 end
 
-bubble_sort([3,5,2,6,1])
 
+
+bubble_sort([3,5,2,6,1])
 
