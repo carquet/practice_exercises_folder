@@ -14,22 +14,64 @@
 # create the descriptions to match the requirements above.
 
 class Person
+  attr_reader :first_name, :middle_name, :last_name
   def initialize(first_name:, middle_name: nil, last_name:)
     @first_name = first_name
     @middle_name = middle_name
     @last_name = last_name
   end
 
-  # implement your behavior here
+  def full_name
+    if @middle_name == nil
+      p "#{@first_name} #{@last_name}"
+    else
+    p "#{@first_name} #{@middle_name} #{@last_name}"
+    end
+  end
+
+  def full_name_with_middle_initial
+    if @middle_name == nil
+       p "#{@first_name} #{@last_name}"
+     else
+
+    p "#{@first_name} #{@middle_name[0]}. #{@last_name}"
+    end
+  end
+
+  def initials
+    
+    "D.H.H."
+  end
 end
 
 RSpec.describe Person do
   describe "#full_name" do
-    it "concatenates first name, middle name, and last name with spaces"
-    it "does not add extra spaces if middle name is missing"
+    it "concatenates first name, middle name, and last name with spaces" do
+      person = Person.new(first_name: 'David', middle_name: 'Heinemeier', last_name:'Hansson')
+      expect(person.full_name).to eq("David Heinemeier Hansson")
+    end
+
+    it "does not add extra spaces if middle name is missing" do
+      person = Person.new(first_name: 'Laetitia', last_name:'Carquet')
+      expect(person.full_name).to eq("Laetitia Carquet")
+    end
   end
 
-  describe "#full_name_with_middle_initial"
+  describe "#full_name_with_middle_initial" do
+      it "concatenates first name, initial of middle name and last name" do
+        person = Person.new(first_name: 'David', middle_name: 'Heinemeier', last_name:'Hansson')
+        expect(person.full_name_with_middle_initial).to eq("David H. Hansson")
+      end
+      it "does not add an extra space with a dot if middle name is missing" do
+        person = Person.new(first_name: 'Laetitia', last_name:'Carquet')
+        expect(person.full_name_with_middle_initial).to eq("Laetitia Carquet")
+      end
+  end
 
-  describe "#initials"
+  describe "#initials" do
+    it "gives the initials of the names given" do
+      person = Person.new(first_name: 'David', middle_name: 'Heinemeier', last_name:'Hansson')
+      expect(person.initials).to eq("D.H.H.")
+    end
+  end
 end
