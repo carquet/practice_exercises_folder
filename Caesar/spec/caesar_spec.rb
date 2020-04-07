@@ -17,6 +17,11 @@ RSpec.describe Caesar do
 		caesar = Caesar.new("Jgnnq Fqnna!", - 2)
 		expect(caesar.solve_cipher).to_not eql("Hello Dolly!")
 		end
+
+		it " returns a string of shifted character within the alphabet if given 10" do
+			caesar = Caesar.new("Hello, Dolly!", 10)
+			expect(caesar.solve_cipher).to eql("Rovvy, Nyvvj!")
+		end
 	end
 
 	describe "#shift" do

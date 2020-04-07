@@ -20,11 +20,23 @@ class  Caesar
 #shift the character to shifnum place
 	def shift(char)
 			ascii_shifted = char.ord + @shiftnum
-			p ascii_shifted.chr
-			
+			check(char, ascii_shifted)		
+	end
+
+	def check(char_given,shifted_result)
+		if char_given.ord <= 90 && shifted_result > 90
+			(shifted_result - 25).chr
+		elsif (char_given.ord >= 97 && char_given.ord <= 122) && shifted_result > 122
+			(shifted_result - 25).chr
+		else
+			(shifted_result).chr
+		end
 	end
 
 end
+first = Caesar.new("Hello, Dolly!", 10)
+p first.string
+first.solve_cipher
 
 first = Caesar.new("hello, Dolly!", 2)
 p first.string
